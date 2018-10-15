@@ -1,0 +1,50 @@
+<html>
+<head>
+    <title> OpenTok Demo : Video Chat </title>
+    <link href="app.css" rel="stylesheet" type="text/css">
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
+</head>
+<body>
+	<table>
+		<tbody>
+			<tr><td nowrap>OpenTok API Key:</td>	 
+				<td><input type="text" id="apiKey"</td>
+			</tr>
+			<tr><td nowrap valign="top">OpenTok Session Id:</td>
+				<td><textarea rows="1" cols="80" id="sessionId"></textarea></td>
+			</tr>
+			<tr><td nowrap valign="top">OpenTok Token:<br>
+					<button onclick="launchVideoChat();">Launch Video Chat</button></td>	 
+				<td><textarea rows="3" cols="80" id="token"></textarea></td>
+			</tr>
+		</tbody>
+	</table>
+	<p></p>
+    <div id="videos">
+        <div id="subscriber"></div>
+        <div id="publisher"></div>
+    </div>
+
+    <script type="text/javascript" src="app.js"></script>
+	<script>
+	function launchVideoChat () {
+		apiKey 		= $('#apiKey').val().trim();
+		sessionId 	= $('#sessionId').val().trim();
+		token 		= $('#token').val().trim();
+		// alert ("API KEY: " + apiKey + "\nSession Id: " + sessionId + "\nToken: " + token);
+		if (isEmpty(apiKey, 	"API Key should not be blaank.")) return;
+		if (isEmpty(sessionId,  "Session Id should not be blaank.")) return;
+		if (isEmpty(token,  	"Token  should not be blaank.")) return;
+		initializeSession();
+	}
+	function isEmpty(input, errorMsg) {
+		if (input=="") {
+			alert (errorMsg);
+			return true;
+		}
+		return false;
+	}
+	</script>
+</body>
+</html>
